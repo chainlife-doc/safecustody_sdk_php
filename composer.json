@@ -1,0 +1,16 @@
+{
+    "name": "chainlife/safecustody_sdk_php",
+    "description": "chainlife/safecustody_sdk_php",
+    "type": "library",
+    "require": {
+        "php": "^5.6"
+    },
+    "license": "Apache",
+    "authors": [
+        {
+            "name": "wangxudong",
+            "email": "834971685@qq.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}
