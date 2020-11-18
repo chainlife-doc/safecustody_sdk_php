@@ -7,7 +7,7 @@
     `` composer -V``
 
 - 进入项目的根目录引入  
-    ``` composer require safecustody_sdk_php```
+    ``` composer require chainlife/safecustody_sdk_php```
     > 如果下载太慢,建议把composer切换到国内镜像.[如何切换](https://pkg.phpcomposer.com/)  
                                                                 
 - 创建main.php,在代码里面导入下面代码:
@@ -20,7 +20,7 @@
   +---------------------------------------------------------------------------------------------+
   |~:cmd> mkdir project                                                                         |
   |~:cmd> cd project                                                                            |
-  |./project:cmd> composer require safecustody_sdk_php                                          |
+  |./project:cmd> composer require chainlife/safecustody_sdk_php                                |
   |./project:cmd> touch main.php                                                                |
   |./project:cmd> echo '<?php' > main.php                                                       |
   |./project:cmd> echo 'require_once "./vendor/autoload.php";' >> main.php                      |
@@ -46,7 +46,7 @@
 # 例子
 > 可以参考example.php  
 
-#### 创建sdkApi`require方式`  
+#### 创建sdkApi`composer方式`  
  ```php
 <?php
 
@@ -54,8 +54,8 @@ namespace main;
 
 require_once "./vendor/autoload.php";
 
-use sdk\Sdk;
-use sdk\User;
+use safecustody\Sdk;
+use safecustody\User;
 
  //创建user对象
 $user = new User();    
