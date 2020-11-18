@@ -1,6 +1,6 @@
 <?php
 
-namespace sdk;
+namespace safecustody;
 
 /**
  * 路由控制器

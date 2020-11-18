@@ -1,7 +1,7 @@
 <?php
 
 
-namespace sdk;
+namespace safecustody;
 
 
 class Sdk extends RouteController

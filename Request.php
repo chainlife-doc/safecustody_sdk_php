@@ -1,9 +1,9 @@
 <?php
 
 
-namespace sdk;
+namespace safecustody;
 
-use sdk\User;
+use safecustody\User;
 
 /**
  * Class SdkApi

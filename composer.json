@@ -2,6 +2,11 @@
   "name": "chainlife/safecustody_sdk_php",
   "description": "chainlife/safecustody_sdk_php",
   "type": "library",
+  "autoload": {
+    "psr-4": {
+      "safecustody": "./"
+    }
+  },
   "require": {
     "php": ">=5.6"
   },

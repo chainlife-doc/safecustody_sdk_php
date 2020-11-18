@@ -4,8 +4,8 @@ namespace main;
 
 require_once "./vendor/autoload.php";
 
-use sdk\Sdk;
-use sdk\User;
+use safecustody\Sdk;
+use safecustody\User;
 
 $user = new User();
 $user->setAppid("");
