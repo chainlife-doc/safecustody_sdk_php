@@ -128,7 +128,7 @@ var_dump($sdk->QueryBalance(["chain" => "eth", "coin" => "usdt"]));
 /**
  * @param string coin 币名
  * @param string chain 链名
- * @param string subuserid 你们的子用户id
+ * @param string subuserid 你的用户id
  */
 var_dump($sdk->GetDepositAddr(["chain" => "eth", "coin" => "usdt", "subuserid"=>"1"]));
 ```
@@ -138,7 +138,7 @@ var_dump($sdk->GetDepositAddr(["chain" => "eth", "coin" => "usdt", "subuserid"=>
 /**
  * @param string coin 币名
  * @param string chain 链名
- * @param string subuserid 你们的用户id
+ * @param string subuserid 你的用户id
  * @param int fromid 从哪个充值序号开始，值大于等于1,查询结果包含fromId对应的充值记录
  * @param int limit 最多查询多少条记录，包含fromid这条记录
  */
@@ -160,7 +160,7 @@ var_dump($sdk->QueryIsInternalAddr($coin = "btc", $chain = "btc", $addr = ""));
 /**
  * @param string coin 币名
  * @param string chain 链名
- * @param string subuserid 你们的子用户id
+ * @param string subuserid 你的用户id
  * @param string addr 提币地址
  * @param string amount 提币数量
  * @param string memo 提币备注,内容自定义（会记录到区块链上）
@@ -174,7 +174,7 @@ var_dump($sdk->SubmitWithdraw($subuserId = "26", $chain = "trx", $coin = "trx", 
 /**
  * @param string coin 币名
  * @param string chain 链名
- * @param string subuserid 你们的子用户id
+ * @param string subuserid 你的用户id
  * @param string addr 提币地址
  * @param string amount 提币数量
  * @param string memo 提币备注,内容自定义（会记录到区块链上）
@@ -198,7 +198,7 @@ var_dump($sdk->QueryWithdrawStatus($coin = "btc", $chain = "btc", $withdrawid = 
 /**
  * @param string coin 币名
  * @param string chain 链名
- * @param string subuserid 你们的用户id
+ * @param string subuserid 你的用户id
  * @param int fromid 从哪个充值序号开始，值大于等于1,查询结果包含fromId对应的充值记录
  * @param int limit 最多查询多少条记录，包含fromid这条记录
  */
