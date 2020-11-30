@@ -46,11 +46,11 @@ interface Api
 
 
     //提交提币工单
-    public function SubmitWithdraw($subuserid, $chain, $coin, $addr, $amount, $memo, $usertags, $auth);
+    public function SubmitWithdraw($subuserid, $chain, $coin, $addr, $amount, $memo, $usertags);
 
 
     //提币预校验接口
-    public function ValidateWithdraw($subuserid, $chain, $coin, $addr, $amount, $memo, $usertags, $auth);
+    public function ValidateWithdraw($subuserid, $chain, $coin, $addr, $amount, $memo, $usertags);
 
 
     //查询提币工单状态

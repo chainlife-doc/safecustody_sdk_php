@@ -27,13 +27,13 @@ try {
     var_dump($sdk->GetDepositHistory("1", "trx", "trx"));
 
     //内部地址查询
-    var_dump($sdk->QueryIsInternalAddr("btc", "btc", "0xb2ffaf1d8e10e20c4f4e0cf9c3297f672db8afa3"));
+    var_dump($sdk->QueryIsInternalAddr("btc", "btc", ""));
 
 //    //提交提币工单
-    var_dump($sdk->SubmitWithdraw("26", "trx", "trx", "TAsdoZTpaybY5V6PEE5jxZoMAMLYYz3E8A", "10", "test", "my", "xxxxx"));
+    var_dump($sdk->SubmitWithdraw("26", "trx", "trx", "", "10", "test", "my"));
 
     //提币预校验接口
-    var_dump($sdk->ValidateWithdraw("26", "trx", "trx", "TAsdoZTpaybY5V6PEE5jxZoMAMLYYz3E8A", "10", "test", "my", "xxxxx"));
+    var_dump($sdk->ValidateWithdraw("26", "trx", "trx", "", "10", "test", "my"));
 
     //查询提币工单状态
     var_dump($sdk->QueryWithdrawStatus("btc", "btc", "1"));

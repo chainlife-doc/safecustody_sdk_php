@@ -134,11 +134,10 @@ class RouteController extends Request implements Api
      * @param string $amount
      * @param string $memo
      * @param string $usertags
-     * @param string $auth
      * @return array
      * https://github.com/chainlife-doc/wallet-api/blob/master/withdraw/%E6%8F%90%E4%BA%A4%E6%8F%90%E5%B8%81%E5%B7%A5%E5%8D%95.md
      */
-    public function SubmitWithdraw($subuserid, $chain, $coin, $addr, $amount, $memo, $usertags, $auth)
+    public function SubmitWithdraw($subuserid, $chain, $coin, $addr, $amount, $memo, $usertags)
     {
         $method = __METHOD__;
         $param = [
@@ -149,7 +148,6 @@ class RouteController extends Request implements Api
             "amount" => $amount,
             "memo" => $memo,
             "usertags" => $usertags,
-            "auth" => $auth,
             "sign" => $this->user->getSign($addr, $memo, $usertags),
         ];
 
@@ -166,11 +164,10 @@ class RouteController extends Request implements Api
      * @param string $amount
      * @param string $memo
      * @param string $usertags
-     * @param string $auth
      * @return array
      * https://github.com/chainlife-doc/wallet-api/blob/master/withdraw/%E6%8F%90%E5%B8%81%E9%A2%84%E6%A0%A1%E9%AA%8C%E6%8E%A5%E5%8F%A3.md
      */
-    public function ValidateWithdraw($subuserid, $chain, $coin, $addr, $amount, $memo, $usertags, $auth)
+    public function ValidateWithdraw($subuserid, $chain, $coin, $addr, $amount, $memo, $usertags)
     {
         $method = __METHOD__;
         $param = [
