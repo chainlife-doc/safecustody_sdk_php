@@ -133,10 +133,11 @@ class RouteController extends Request implements Api
      * @param string $amount
      * @param string $memo
      * @param string $usertags
+     * @param string $userOrderid
      * @return array
      * https://github.com/chainlife-doc/wallet-api/blob/master/withdraw/%E6%8F%90%E4%BA%A4%E6%8F%90%E5%B8%81%E5%B7%A5%E5%8D%95.md
      */
-    public function SubmitWithdraw($subuserid, $chain, $coin, $addr, $amount, $memo, $usertags)
+    public function SubmitWithdraw($subuserid, $chain, $coin, $addr, $amount, $memo, $usertags, $userOrderid = "")
     {
         $method = __METHOD__;
         $param = [
@@ -148,11 +149,10 @@ class RouteController extends Request implements Api
             "memo" => $memo,
             "usertags" => $usertags,
             "sign" => $this->user->getSign($addr, $memo, $usertags),
+            "user_orderid" => $userOrderid,
         ];
 
-        $result = $this->request($method, $param, $this->user);
-        $result = $this->_deletFee($result);
-        return $result;
+        return $this->request($method, $param, $this->user);
     }
 
 
@@ -165,10 +165,11 @@ class RouteController extends Request implements Api
      * @param string $amount
      * @param string $memo
      * @param string $usertags
+     * @param string user_orderid 用户自定义订单ID，具有唯一性，可避免重复订单(可选字段)
      * @return array
      * https://github.com/chainlife-doc/wallet-api/blob/master/withdraw/%E6%8F%90%E5%B8%81%E9%A2%84%E6%A0%A1%E9%AA%8C%E6%8E%A5%E5%8F%A3.md
      */
-    public function ValidateWithdraw($subuserid, $chain, $coin, $addr, $amount, $memo, $usertags)
+    public function ValidateWithdraw($subuserid, $chain, $coin, $addr, $amount, $memo, $usertags,$userOrderid="")
     {
         $method = __METHOD__;
         $param = [
@@ -180,6 +181,7 @@ class RouteController extends Request implements Api
             "memo" => $memo,
             "usertags" => $usertags,
             "sign" => $this->user->getSign($addr, $memo, $usertags),
+            "user_orderid" => $userOrderid,
         ];
         return $this->request($method, $param, $this->user);
     }
@@ -201,9 +203,7 @@ class RouteController extends Request implements Api
             "coin" => $coin,
             "withdrawid" => $withdrawid,
         ];
-        $result = $this->request($method, $param, $this->user);
-        $result = $this->_deletFee($result);
-        return $result;
+        return $this->request($method, $param, $this->user);
     }
 
 
@@ -268,13 +268,5 @@ class RouteController extends Request implements Api
         $url = $this->host . $url;
 
         return $url;
-    }
-
-    private function _deletFee($result)
-    {
-        unset($result["data"]["data"]["fee_coin"]);
-        unset($result["data"]["data"]["fee_amount"]);
-        unset($result["data"]["data"]["fee_coin_chain"]);
-        return $result;
     }
 }

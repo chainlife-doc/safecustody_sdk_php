@@ -96,9 +96,9 @@ var_dump($sdk->GetDepositAddr(["chain" => "eth", "coin" => "usdt", "subuserid"=>
 #### [获取充值记录](https://github.com/chainlife-doc/wallet-api/blob/master/deposit/%E8%8E%B7%E5%8F%96%E5%85%85%E5%80%BC%E8%AE%B0%E5%BD%95.md)
 ```php
 /**
- * @param string coin 币名
- * @param string chain 链名
- * @param string subuserid 你的用户id
+ * @param string coin 主链 (空字符串默认不做筛选)
+ * @param string chain 币名 (空字符串默认不做筛选) 
+ * @param string subuserid 子账号，平台不管其含义（空字符串默认不做筛选）
  * @param int fromid 从哪个充值序号开始，值大于等于1,查询结果包含fromId对应的充值记录
  * @param int limit 最多查询多少条记录，包含fromid这条记录
  */
@@ -123,10 +123,11 @@ var_dump($sdk->QueryIsInternalAddr($coin = "btc", $chain = "btc", $addr = ""));
  * @param string subuserid 你的用户id
  * @param string addr 提币地址
  * @param string amount 提币数量
- * @param string memo 提币备注,内容自定义（会记录到区块链上）
- * @param string usertags 提币标签，内容自定义 （不会记录到区块链上）
+ * @param string memo 该字段主要提供给链上支持备注的币种,内容会更新到链上
+ * @param string usertags 用户标签,自定义内容,一般作为订单备注使用,辅助说明
+ * @param string user_orderid 用户自定义订单ID，该字段主要是填写用户系统的订单流水号，字段具有唯一性（可选字段)  
  */
-var_dump($sdk->SubmitWithdraw($subuserId = "26", $chain = "trx", $coin = "trx", $addr = "", $amount = "10", $memo = "test", $usertags = "my"));
+var_dump($sdk->SubmitWithdraw($subuserId = "26", $chain = "trx", $coin = "trx", $addr = "", $amount = "10", $memo = "test", $usertags = "my",$userOrderid=""));
 ```
 
 #### [提币预校验](https://github.com/chainlife-doc/wallet-api/blob/master/withdraw/%E6%8F%90%E5%B8%81%E9%A2%84%E6%A0%A1%E9%AA%8C%E6%8E%A5%E5%8F%A3.md)
@@ -134,13 +135,14 @@ var_dump($sdk->SubmitWithdraw($subuserId = "26", $chain = "trx", $coin = "trx", 
 /**
  * @param string coin 币名
  * @param string chain 链名
- * @param string subuserid 你的用户id
+ * @param string subuserid 子账号，平台不管其含义（空字符串默认不做筛选）
  * @param string addr 提币地址
  * @param string amount 提币数量
- * @param string memo 提币备注,内容自定义（会记录到区块链上）
- * @param string usertags 提币标签，内容自定义 （不会记录到区块链上）
+ * @param string memo 该字段主要提供给链上支持备注的币种，内容会更新到链上   
+ * @param string usertags 用户标签, 自定义内容，一般作为订单备注使用,辅助说明
+ * @param string user_orderid 用户自定义订单ID，该字段主要是填写用户系统的订单流水号，字段具有唯一性（可选字段)
  */
-var_dump($sdk->ValidateWithdraw($subuserId = "26", $chain = "trx", $coin = "trx", $addr = "", $amount = 0, $memo = "test", $usertags = "my"));
+var_dump($sdk->ValidateWithdraw($subuserId = "26", $chain = "trx", $coin = "trx", $addr = "", $amount = 0, $memo = "test", $usertags = "my",$userOrderid=""));
 ```
 
 #### [查询工单状态](https://github.com/chainlife-doc/wallet-api/blob/master/withdraw/%E6%9F%A5%E8%AF%A2%E6%8F%90%E5%B8%81%E5%B7%A5%E5%8D%95%E7%8A%B6%E6%80%81.md)
@@ -158,7 +160,7 @@ var_dump($sdk->QueryWithdrawStatus($coin = "btc", $chain = "btc", $withdrawid = 
 /**
  * @param string coin 币名
  * @param string chain 链名
- * @param string subuserid 你的用户id
+ * @param string subuserid 子账号，平台不管其含义（空字符串默认不做筛选）
  * @param int fromid 从哪个充值序号开始，值大于等于1,查询结果包含fromId对应的充值记录
  * @param int limit 最多查询多少条记录，包含fromid这条记录
  */
@@ -169,10 +171,10 @@ var_dump($sdk->QueryWithdrawHistory($subuserId = "1", $chain = "btc", $coin = "b
 ```php
     /**
      * 取消提币接口
-     * @param $subuserId
-     * @param $chain
-     * @param $coin
-     * @param $withdrawid
+     * @param string $subuserId 子账号，平台不管其含义（空字符串默认不做筛选）
+     * @param string $chain链名
+     * @param string $coin 币名
+     * @param string $withdrawid 提币订单ID
      * @return mixed
      */
 var_dump($sdk->WithdrawCancel($subuserId = "1", $chain = "btc", $coin = "btc", $withdrawid = "1"));
