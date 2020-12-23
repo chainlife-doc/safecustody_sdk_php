@@ -31,9 +31,9 @@ class User
 
 
     /**
-     * @var string salt
+     * @var string secret_key
      */
-    private $salt;
+    private $secretKey;
 
 
     /**
@@ -41,6 +41,11 @@ class User
      */
     private $token;
 
+
+    /**
+     * @var string api_key
+     */
+    private $apiKey;
 
     /**
      * @param string $userId
@@ -58,24 +63,6 @@ class User
     {
         return $this->userId;
     }
-
-    /**
-     * @param $salt
-     */
-    public function setSalt($salt)
-    {
-        $this->salt = $salt;
-    }
-
-
-    /**
-     * @return string
-     */
-    public function getSalt()
-    {
-        return $this->salt;
-    }
-
 
     /**
      * @param string $appid
@@ -101,12 +88,11 @@ class User
      */
     public function getToken()
     {
-        return $this->token = md5($this->getAppid() . "_" . $this->getSalt() . "_" . $this->getUserId() . "_" . $this->getUserTime());
+        return $this->token = md5($this->getApiKey() . "_" . $this->getSecretKey() . "_" . $this->getUserId() . "_" . $this->getUserTime());
     }
 
 
     /**
-     * @param $time
      * @param $addr
      * @param $memo
      * @param $usertags
@@ -114,7 +100,7 @@ class User
      */
     public function getSign($addr, $memo, $usertags)
     {
-        return md5($this->getAppid() . "_" . $this->getSalt() . "_" . $this->getUserId() . "_" . $this->getUserTime() . "_" . $addr . "_" . $memo . "_" . $usertags);
+        return md5($this->getApiKey() . "_" . $this->getSecretKey() . "_" . $this->getUserId() . "_" . $this->getUserTime() . "_" . $addr . "_" . $memo . "_" . $usertags);
     }
 
 
@@ -134,5 +120,37 @@ class User
     public function unsetTime()
     {
         $this->time = null;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSecretKey()
+    {
+        return $this->secretKey;
+    }
+
+    /**
+     * @param string $secretKey
+     */
+    public function setSecretKey($secretKey)
+    {
+        $this->secretKey = $secretKey;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getApiKey()
+    {
+        return $this->apiKey;
+    }
+
+    /**
+     * @param mixed $apiKey
+     */
+    public function setApiKey($apiKey)
+    {
+        $this->apiKey = $apiKey;
     }
 }

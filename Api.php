@@ -20,6 +20,7 @@ interface Api
         "QueryWithdrawStatus" => "withdraw/status.php",
         "QueryWithdrawHistory" => "withdraw/history.php",
         "GetDepositAddr" => "deposit/addr.php",
+        "WithdrawCancel" => "withdraw/cancel.php",
     ];
 
     /**
@@ -64,4 +65,8 @@ interface Api
 
     //查询提币记录
     public function QueryWithdrawHistory($subuserId, $chain, $coin, $fromId = 0, $limit = 100);
+
+
+    //取消提币接口
+    public function WithdrawCancel($subuserId, $chain, $coin, $withdrawid);
 }

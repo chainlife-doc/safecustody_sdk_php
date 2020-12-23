@@ -230,6 +230,29 @@ class RouteController extends Request implements Api
         return $this->request($method, $param, $this->user);
     }
 
+
+    /**
+     * 取消提币接口
+     * @param $subuserId
+     * @param $chain
+     * @param $coin
+     * @param $withdrawid
+     * @return mixed
+     * https://github.com/chainlife-doc/wallet-api/blob/master/withdraw/%E5%8F%96%E6%B6%88%E6%8F%90%E5%B8%81%E6%8E%A5%E5%8F%A3.md
+     */
+    public function WithdrawCancel($subuserId, $chain, $coin, $withdrawid)
+    {
+        $method = __METHOD__;
+        $param = [
+            "subuserid" => $subuserId,
+            "chain" => $chain,
+            "coin" => $coin,
+            "withdrawid" => $withdrawid,
+        ];
+        return $this->request($method, $param, $this->user);
+    }
+
+
     /**
      * @param $method
      * @return mixed|void

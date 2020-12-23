@@ -27,26 +27,11 @@
   |./project:cmd>                                                                               |
   +──-------------------------------------------------------------------------------------------+ 
     ```        
-#### 源码安装 
-    
-- 直接从GitHup下载源码,把整个`sdk_include`包放入您的项目目录中,  
-  然后在代码里引入:
-     ```php
-      require_once __DIR__ . "Sdk.php";
-      require_once __DIR__ . "User.php";
-    ```     
-    
-    ```
-    Project //项目
-      ├── main.php 
-      ├── ...
-      └── sdk_include 
-         
-    ```
+  
 # 例子
 > 可以参考example.php  
 
-#### 创建sdkApi`composer方式`  
+#### 创建sdkApi
  ```php
 <?php
 
@@ -56,50 +41,25 @@ require_once "./vendor/autoload.php";
 
 use safecustody\Sdk;
 use safecustody\User;
+$user = new User();
 
- //创建user对象
-$user = new User();    
+//对应商户后台的APPID
+$user->setAppid("");
 
- //设置appid
-$user->setAppid(""); 
- 
- //设置userid
+//对应商户后台的商户ID
 $user->setUserId("");
 
- //设置salt
-$user->setSalt("");
+//对应商户后台的SECRETKEY
+$user->setSecretKey("");
 
- //创建sdk对象
+//对应商户后台的APIKEY
+$user->setApiKey("");
+
 $sdk = new Sdk($user);
 
- //设置host
-$sdk->setHost("");    
+//TODO 请向微信群里面的官方人员获取
+$sdk->setHost("");   
    
-``` 
-
-#### 创建sdkApi`源码方式`  
- ```php
-<?php
-require_once __DIR__ . "/sdk_include/Sdk.php";
-require_once __DIR__ . "/sdk_include/User.php";
- 
- //创建user对象
-$user = new User();    
-
- //设置appid
-$user->setAppid(""); 
- 
- //设置userid
-$user->setUserId("");
-
- //设置salt
-$user->setSalt("");
-
- //创建sdk对象
-$sdk = new Sdk($user);
-
- //设置host
-$sdk->setHost("");
 ``` 
 
 #### [单个币种查询](https://github.com/chainlife-doc/wallet-api/blob/master/%E5%8D%95%E5%B8%81%E7%A7%8D%E4%BF%A1%E6%81%AF%E6%9F%A5%E8%AF%A2.md)
@@ -203,4 +163,17 @@ var_dump($sdk->QueryWithdrawStatus($coin = "btc", $chain = "btc", $withdrawid = 
  * @param int limit 最多查询多少条记录，包含fromid这条记录
  */
 var_dump($sdk->QueryWithdrawHistory($subuserId = "1", $chain = "btc", $coin = "btc", $fromid = 1, $limit = 100));
+```
+
+#### [取消提币接口](https://github.com/chainlife-doc/wallet-api/blob/master/withdraw/%E5%8F%96%E6%B6%88%E6%8F%90%E5%B8%81%E6%8E%A5%E5%8F%A3.md)
+```php
+    /**
+     * 取消提币接口
+     * @param $subuserId
+     * @param $chain
+     * @param $coin
+     * @param $withdrawid
+     * @return mixed
+     */
+var_dump($sdk->WithdrawCancel($subuserId = "1", $chain = "btc", $coin = "btc", $withdrawid = "1"));
 ```

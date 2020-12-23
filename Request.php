@@ -69,6 +69,7 @@ abstract class Request
                 "auth" => [
                     "token" => $user->getToken(),
                     "timestamp" => $user->getUserTime(),
+                    "api_key" => $user->getApiKey(),
                 ],
             ] + $param;
 //          $arr = $arr + $arr["data"] + $param;
