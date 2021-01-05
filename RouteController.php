@@ -148,7 +148,7 @@ class RouteController extends Request implements Api
             "amount" => $amount,
             "memo" => $memo,
             "usertags" => $usertags,
-            "sign" => $this->user->getSign($addr, $memo, $usertags),
+            "sign" => $this->user->getSign($addr, $memo, $usertags,$userOrderid),
             "user_orderid" => $userOrderid,
         ];
 
@@ -180,7 +180,7 @@ class RouteController extends Request implements Api
             "amount" => $amount,
             "memo" => $memo,
             "usertags" => $usertags,
-            "sign" => $this->user->getSign($addr, $memo, $usertags),
+            "sign" => $this->user->getSign($addr, $memo, $usertags,$userOrderid),
             "user_orderid" => $userOrderid,
         ];
         return $this->request($method, $param, $this->user);

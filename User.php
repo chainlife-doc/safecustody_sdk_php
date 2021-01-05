@@ -98,9 +98,15 @@ class User
      * @param $usertags
      * @return string
      */
-    public function getSign($addr, $memo, $usertags)
+    public function getSign($addr, $memo, $usertags, $userOrderId = "")
     {
-        return md5($this->getApiKey() . "_" . $this->getSecretKey() . "_" . $this->getUserId() . "_" . $this->getUserTime() . "_" . $addr . "_" . $memo . "_" . $usertags);
+        $str = "";
+        if ($userOrderId == "") {
+            $str = "_" . $userOrderId;
+        }
+
+        return md5($this->getApiKey() . "_" . $this->getSecretKey() . "_" . $this->getUserId() . "_" . $this->getUserTime() .
+            "_" . $addr . "_" . $memo . "_" . $usertags . $str);
     }
 
 
