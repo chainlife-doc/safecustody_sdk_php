@@ -21,6 +21,7 @@ interface Api
         "QueryWithdrawHistory" => "withdraw/history.php",
         "GetDepositAddr" => "deposit/addr.php",
         "WithdrawCancel" => "withdraw/cancel.php",
+        "BlockHeight" => "blockheight.php",
     ];
 
     /**
@@ -69,4 +70,7 @@ interface Api
 
     //取消提币接口
     public function WithdrawCancel($subuserId, $chain, $coin, $withdrawid);
+
+    //查询区块高度
+    public function BlockHeight($chain, $coin);
 }

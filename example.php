@@ -59,6 +59,9 @@ try {
 
     //取消提币接口
     var_dump($sdk->WithdrawCancel($subuserId = "1", $chain = "btc", $coin = "btc", $withdrawid = "1"));
+
+    //查询节点高度
+    var_dump($sdk->BlockHeight($chain = "btc", $coin = "btc"));
 } catch (\ErrorException $exception) {
     echo $exception->getMessage();
 }
