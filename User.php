@@ -101,7 +101,7 @@ class User
     public function getSign($addr, $memo, $usertags, $userOrderId = "")
     {
         $str = "";
-        if ($userOrderId == "") {
+        if ($userOrderId != "") {
             $str = "_" . $userOrderId;
         }
 
